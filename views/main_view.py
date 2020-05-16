@@ -5,7 +5,7 @@ from views.book_view import BookView
 
 
 def get_menu_option():
-    options = ("Dodaj książkę", "Znajdź książkę", "Dodaj użytkownika", "Znajdź użytkownika")
+    options = ("Dodaj książkę", "Znajdź książkę", "Wypożycz książkę")
 
     print("Wybierz opcję:")
 

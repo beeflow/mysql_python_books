@@ -40,15 +40,18 @@ class BookView:
         print('Wyszukiwanie książek')
         print('--------------------')
 
-        search_param = input("Podaj  tytuł: ")
-        books = Book().select().where(Book.title.contains(search_param))
+        search_param = input("Podaj tytuł lub ISBN: ")
+        books = Book().select().where(
+            (Book.title.contains(search_param)) | (Book.isbn == search_param)
+        )
 
-        for book in books:
-            print(book)
-            for author in book.authors:
-                print(author)
-
-            print('-----')
+        for index, book in enumerate(books):
+            print(
+                index + 1,
+                book,
+                '({})'.format(', '.join([str(author) for author in book.authors])),
+                f'published: {book.published if book.published else ""}'
+            )
 
     @staticmethod
     def _add_authors() -> List[Author]:
